@@ -1,21 +1,29 @@
-def move_zeros(a_list):
-    zero_index = 0
-    for index, n in enumerate(a_list):
+def move_zeros(l):
+    zero_idx = 0
+    for i in range(len(l)):
+        n = l[i]
         if n != 0:
-            a_list[zero_index] = n
-            if zero_index != index:
-                a_list[index] = 0
-            zero_index += 1
-            return(a_list)
+            l[zero_idx] = n
+            if zero_idx != i:
+                l[i] = 0
+            zero_idx = zero_idx + 1
+    return l
 
-        a_list = [8, 0, 3, 0, 12]
-        move_zeros(a_list)
-        print(a_list)
 
-# l = [11,9,-77,8]
+groups = ['HOT', 'Seventeen', 'Black Pink', 'NJZ']
+# ratings = [1, 2, 4, 3, 100]
+ratings = [1, 2, 4, 3]
+
+l = [11, 0, 9, 0, -77]
+move_zeros(l)
+print(l)
+
+# l = [11, 9, -77, 8]
 # for i, v in enumerate(l):
-#   print(i,v)
+#     print(i, v)
 
-# l = [11,9,-77,8]
-# for i, v in enumerate(l):
-#   print(i, l[i])
+# l = [11, 9, -77, 8]
+# for i in range(len(l)):
+#     print(i, l[i])
+group_rating = list(zip(groups, ratings))
+print(group_rating)
