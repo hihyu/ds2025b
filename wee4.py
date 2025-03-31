@@ -12,6 +12,7 @@ class LinkedList:
         if not self.head:
             self.head = Node(data)
             return
+
         current = self.head
         while current.link:
             current = current.link
