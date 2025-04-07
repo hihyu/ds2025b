@@ -34,7 +34,7 @@ class LinkedList:
 
     def search(self, target):
         current = self.head
-        while current:
+        while current.link:
             if current.data == target:
                 return f"{target}을(를) 찾았습니다"
             else:
@@ -57,7 +57,7 @@ ll.append(10)
 ll.append(-9)
 print(ll)
 print(ll.search(100))
-print(ll.search(-9))
+print(ll.search(10))
 ll.remove(90)
-ll.remove(-9)
+ll.remove(10)
 print(ll)
