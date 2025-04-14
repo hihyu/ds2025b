@@ -1,35 +1,39 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, link=None):
         self.data = data
-        self.link = None
+        self.link = link
 
 
-class Stack:
+class Queue:
     def __init__(self):
-        self.top = None
+        self.front = None
+        self.rear = None
+        self.size = 0
 
-    def push(self, data):
+    def enqueue(self, data):
+        self.size = self.size + 1
         node = Node(data)
-        if self.top is None:
-            self.top = node
+        if self.rear is None:
+            self.front = node
+            self.rear = node
         else:
-            node.link = self.top
-            self.top = node
+            self.rear.link = node
+            self.rear = node
 
-    def pop(self):
-        if self.top is None:
-            return "Stack is empty!"
-        popped_node = self.top
-        self.top = self.top.link
-        popped_node.link = None  # !
-        return popped_node.data
+    def dequeue(self):
+        if self.front is None:
+            raise IndexError("Queue is empty!")
+        self.size = self.size - 1
+        temp = self.front
+        self.front = self.front.link
+        if self.front is None:
+            self.rear = None
+        return  temp.data
 
-
-s1 = Stack()
-# print(s1.pop())
-s1.push("Data structure")
-s1.push("Database")
-# print(s1.pop())
-# print(s1.pop())
-for i in range(3):
-    print(s1.pop())
+q = Queue()
+q.enqueue("Database")
+q.enqueue("Data structure")
+print(q.size, q.front.data, q.rear.data)
+q.dequeue()
+q.dequeue()
+print(q.size, q.front, q.rear)
