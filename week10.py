@@ -64,8 +64,28 @@ def search(find_number):
             current = current.right
 
 
+def delete(node, value):
+    if node is None:
+        return None
+
+    if value < node.data:
+        node.left = delete(node.left, value)
+    elif value > node.data:
+        node.right = delete(node.right, value)
+    else:
+        # 삭제할 노드 발견
+        # 자식이 없는 leaf 노드거나 자식이 하나만 있는 경우
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+        # 자식이 2개인 경우
+    return node
+
+
 if __name__ == "__main__":
     numbers = [10, 15, 8, 3, 9]
+    numbers = [10, 15, 8, 3, 9, 14]
     root = None
 
     for number in numbers:
@@ -79,9 +99,13 @@ if __name__ == "__main__":
     pre_order(root)  # 10->8->3->9->15
     print()
 
-    # search 함수에 입력 부분 제거
+    # search 함수에 출력 부분 제거, 리턴 값은 bool
     number = int(input("찾고자 하는 값 : "))
     if search(number):
         print(f"{number}을(를) 찾았습니다")
     else:
         print(f"{number}이(가) 존재하지 않습니다")
+
+    del_number = int(input("제거할 값 : "))
+    root = delete(root, del_number)
+    post_order(root)
